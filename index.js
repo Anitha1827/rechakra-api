@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 })
 
 // API route
-app.use("api/auth", authRouter)
+app.use("/api/auth", authRouter)
 
 // initilization port
 let PORT = process.env.PORT;
