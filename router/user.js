@@ -30,7 +30,11 @@ router.post("/signup", async (req, res) => {
 
         // generate jwtToken
         let token = generateJwtToken(newUser._id);
-        res.send({message:"Signup Successfully!", token });
+        let isAdmin=false;
+        if(user.email==="admin@gmail.com"){
+          isAdmin = true;
+        }
+        res.send({message:"Signup Successfully!", token, isAdmin });
 
     } catch (error) {
         console.log(error)
@@ -59,7 +63,11 @@ router.post("/login", async(req, res) =>{
 
         // generate jwtToken
         let token = generateJwtToken(user._id);
-        res.send({message:"Login Successfully", token});
+        let isAdmin=false;
+        if(user.email==="admin@gmail.com"){
+          isAdmin = true;
+        }
+        res.send({message:"Login Successfully", token, isAdmin});
 
     } catch (error) {
         console.log(error)
