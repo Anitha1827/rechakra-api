@@ -23,4 +23,14 @@ function gerCurrentDate(){
     
 }
 
-export {generateJwtToken,gerCurrentDate} ;
+// Decode jwt
+const decodeJwtToken = (token) => {
+    try {
+        let decoded = jwt.verify(token, process.env.SECRET_KEY);
+        return decoded.id;
+    } catch (error) {
+        console.error('Error in Jwt Decode', error)
+    }
+}
+
+export {generateJwtToken,gerCurrentDate, decodeJwtToken} ;

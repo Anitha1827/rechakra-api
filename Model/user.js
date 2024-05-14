@@ -33,6 +33,9 @@ let userSchema = new mongoose.Schema({
     },
     updatedAt:{
         type:"string"
+    },
+    usertype:{
+        type:"string"
     }
 });
 
