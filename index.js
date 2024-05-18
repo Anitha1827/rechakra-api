@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cors from "cors";
 import { dbConnection } from "./db.js";
 import { authRouter } from "./router/user.js";
+import { product } from "./router/product.js";
 
 // config dotenv
 dotenv.config();
@@ -23,7 +24,8 @@ app.get("/", (req, res) => {
 })
 
 // API route
-app.use("/api/auth", authRouter)
+app.use("/api/auth", authRouter);
+app.use("api/product", product)
 
 // initilization port
 let PORT = process.env.PORT;

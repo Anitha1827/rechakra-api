@@ -6,7 +6,7 @@ let generateJwtToken = (id) =>{
 }
 
 // Get Current Date
-function gerCurrentDate(){
+function getCurrentDate(){
     // Get current date
     let currentDate = new Date();
     // take day, month and year from the current date
@@ -33,4 +33,4 @@ const decodeJwtToken = (token) => {
     }
 }
 
-export {generateJwtToken,gerCurrentDate, decodeJwtToken} ;
+export {generateJwtToken,getCurrentDate, decodeJwtToken} ;

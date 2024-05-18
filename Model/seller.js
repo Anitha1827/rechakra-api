@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-let userSchema = new mongoose.Schema({
+let sellerSchema = new mongoose.Schema({
     name:{
         type:"string",
         required:true,
@@ -20,27 +20,20 @@ let userSchema = new mongoose.Schema({
     address:{
         type:"string",
     },
-    history:{
-        type:"array",
-        default:[],
-    },
     createdAt:{
     type:"string",
     },
     updatedAt:{
         type:"string"
     },
-    usertype:{
-        type:"string"
-    },
-    otp:{
-        type:"object"
-    },
-    cart:{
-        type:"array",
-        default:[]
-    }
+   sold:{
+    type:"array",
+    default:[]
+   },
+   otp:{
+    type:"object"
+}
 });
 
-let User = mongoose.model("User", userSchema)
-export {User};
+let Seller = mongoose.model("Sellers", sellerSchema)
+export {Seller};
