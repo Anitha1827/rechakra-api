@@ -11,10 +11,10 @@ router.post("/new-product", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       price: req.body.price,
-      review: req.body.review,
       count: req.body.count,
       pickUpAddress: req.body.pickUpAddress,
       discount: req.body.discount,
+      sellerId:req.body.sellerId,
     }).save();
     res.status(200).json({ message: "Product Added Successfully!" });
   } catch (error) {
@@ -29,7 +29,6 @@ router.put("/update:/id", async (req, res) => {
     let title = req.body.title;
     let description = req.body.description;
     let price = req.body.price;
-    let review = req.body.review;
     let count = req.body.count;
     let pickUpAddress = req.body.pickUpAddress;
     let discount = req.body.discount;
@@ -39,13 +38,12 @@ router.put("/update:/id", async (req, res) => {
       { _id:id },
       {
         $set: {
-          title: title,
-          description: description,
-          price: price,
-          review: review,
-          count: count,
-          pickUpAddress: pickUpAddress,
-          discount: discount,
+          title,
+          description,
+          price,
+          count,
+          pickUpAddress,
+          discount,
         },
       }
     );

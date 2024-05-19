@@ -2,7 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors";
 import { dbConnection } from "./db.js";
-import { authRouter } from "./router/user.js";
+import { authRouter } from "./router/auth.js";
 import { product } from "./router/product.js";
 
 // config dotenv

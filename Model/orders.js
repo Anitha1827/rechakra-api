@@ -17,7 +17,8 @@ pickDate:{
     type:"string",
 },
 sold:{
-    type:"boolean"
+    type:"boolean",
+    default:false,
 },
 price:{
     type:"string",
@@ -25,6 +26,10 @@ price:{
 quantity:{
     type:"string",
 },
+sellerId:{
+    type:"string",
+}
+
 });
 
 let Orders = mongoose.model("Orders", orderSchema);

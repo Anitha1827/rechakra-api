@@ -26,7 +26,7 @@ let sellerSchema = new mongoose.Schema({
     updatedAt:{
         type:"string"
     },
-   sold:{
+   soldHistory:{
     type:"array",
     default:[]
    },

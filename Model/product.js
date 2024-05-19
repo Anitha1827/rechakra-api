@@ -22,6 +22,9 @@ let productSchema = new mongoose.Schema({
   },
   discount:{
     type:"string"
+  },
+  sellerId:{
+    type:"string",
   }
 });
 

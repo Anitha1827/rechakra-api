@@ -13,11 +13,13 @@ router.post("/new-order", async(req, res) => {
             pickUpAddress:req.body.pickUpAddress,
             dropAddress:req.body.dropAddress,
             pickDate:req.body.pickDate,
-            sold:req.body.sold,
             price:req.body.price,
-            quantity:req.body.quantity
+            quantity:req.body.quantity,
+            sellerId:req.body.sellerId
         }).save();
-        res.status(200).json({message:"New Orders Added to the DB Successfully!"});
+        // need to send mail to dealer with order details (nodmailer)
+        
+        res.status(200).json({message:"Your Orders completed Successfully!"});
 
     } catch (error) {
         console.log(error);
@@ -25,35 +27,22 @@ router.post("/new-order", async(req, res) => {
     }
 });
 
-// Updating the Orders details
+// // Updating the Orders details
 router.put("/update-order", async(req, res) => {
     try {
-        let userId = req.body.userId;
-        let productId = req.body.productId;
-        let pickUpAddress = req.body.pickUpAddress;
-        let dropAddress = req.body.dropAddress;
-        let pickDate = req.body.pickDate;
-        let sold = req.body.sold;
-        let price = req.body.price;
-        let quantity = req.body.quantity;
+        let {id} = req.body;
 
-        let order = await Orders.findOneAndUpdate({
-            $set : {
-                userId,
-                productId,
-                pickUpAddress,
-                dropAddress,
-                pickDate,
-                sold,
-                price,
-                quantity
-            }
-        });
+         await Orders.findOneAndUpdate(
+            {_id:id},
+            {$set : {
+                sold:true,
+            }}
+        );
         res.status(200).json({message:"Order Details Updated Successfully!"});
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({error:error.message})
+        res.status(500).json({error:error.message});
     }
 });
 
@@ -61,7 +50,7 @@ router.put("/update-order", async(req, res) => {
 router.delete("/delete/:id", async(req, res) => {
     try {
         let id = req.params.id;
-        let deleteOrder = await Orders.findOneAndDelete({_id:id});
+         await Orders.findOneAndDelete({_id:id});
         res.status(200).json({message:"Order details deleted succesfully!"});
     } catch (error) {
         console.log(error);
@@ -73,12 +62,24 @@ router.delete("/delete/:id", async(req, res) => {
 router.get("/get-by-userId", async(req, res) => {
     try {
         let usersId = req.params.userId;
-        let getByUserId = await Orders.find({usersId:usersId});
+        let getByUserId = await Orders.find({usersId});
         res.status(200).json({message:"Order Fetched by userId successfully!", getByUserId});
     } catch (error) {
         console.log(error);
-        res.status(500).json({error:error.message})
+        res.status(500).json({error:error.message});
     }
-})
+});
+
+// get Orders by seller id
+router.get("/get-order-by-sellerId", async(req, res) => {
+    try {
+        let sellerId = req.params.sellerId;
+        let getBySellerId = await Orders.find({sellerId});
+        res.status(200).json({message:"Order Fetched by userId successfully!", getBySellerId});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error:error.message});
+    }
+});
 
 export let Order = router;
