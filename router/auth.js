@@ -115,7 +115,7 @@ router.put("/reset-password", async (req, res) => {
     // Generate hash password
     let salt = await bcrypt.genSalt(10);
     let hashedPassword = await bcrypt.hash(req.body.password, salt);
-
+    
     if (userType === "seller") {
       await Seller.findOneAndUpdate(
         { email: email },
@@ -157,7 +157,6 @@ router.put("/set-otp", async (req, res) => {
     // Generate OTP random
     let otp = String(Math.floor(Math.random() * (9999 - 1000)));
     let date = getCurrentDate();
-
     if (userType === "seller") {
       await Seller.findOneAndUpdate(
         { email: req.body.email },

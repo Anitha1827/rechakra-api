@@ -8,13 +8,7 @@ router.post("/new-product", async (req, res) => {
   try {
     // Add New Product to DB
     await new Product({
-      title: req.body.title,
-      description: req.body.description,
-      price: req.body.price,
-      count: req.body.count,
-      pickUpAddress: req.body.pickUpAddress,
-      discount: req.body.discount,
-      sellerId:req.body.sellerId,
+      title,description,price,count,pickUpAddress,discount,sellerId : req.body
     }).save();
     res.status(200).json({ message: "Product Added Successfully!" });
   } catch (error) {
@@ -34,7 +28,7 @@ router.put("/update:/id", async (req, res) => {
     let discount = req.body.discount;
     let id = req.params.id;
 
-    let product = await Product.findOneAndUpdate(
+     await Product.findOneAndUpdate(
       { _id:id },
       {
         $set: {

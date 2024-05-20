@@ -25,7 +25,10 @@ let productSchema = new mongoose.Schema({
   },
   sellerId:{
     type:"string",
-  }
+  },
+  quantity:{
+    type:"string",
+},
 });
 
 let Product = mongoose.model("Product", productSchema);
